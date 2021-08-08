@@ -1,0 +1,8 @@
+.DS_Store
+*.gbr
+*.ihx
+*.noi
+**/build/*
+!**/build/.gitkeep
+**/release/*
+!**/release/*.gb

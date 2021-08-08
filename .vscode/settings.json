@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    ".*lintrc": "json",
+    "constants.h": "c"
+  }
+}
