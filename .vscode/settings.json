@@ -1,6 +1,8 @@
 {
   "files.associations": {
     ".*lintrc": "json",
-    "constants.h": "c"
+    "constants.h": "c",
+    "player.h": "c",
+    "enemy.h": "c"
   }
 }
