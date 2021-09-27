@@ -5,7 +5,7 @@
 #include "Sprites.c"
 #include "Backgrounds.c"
 #include "StageMap.c"
-#include "StatusMaterials.c"
+#include "HUDMaterials.c"
 #include "Window.c"
 
 void interruptLCD()
@@ -20,7 +20,7 @@ void main()
   
   set_sprite_data(0, 11, Sprites);
   set_bkg_data(0, 2, Backgrounds);
-  set_bkg_data(2, 16, StatusMaterials);
+  set_bkg_data(2, 16, HUDMaterials);
   set_bkg_tiles(0, 0, 20, 18, StageMap);
   Player *player = new_player(64, 128);
   Enemy *enemy = new_enemy(0, 8, 56, 56);
