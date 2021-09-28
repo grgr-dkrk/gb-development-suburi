@@ -8,15 +8,24 @@
 #include "HUDMaterials.c"
 #include "Window.c"
 
+// STAT 割り込み時にウィンドウを隠す
 void interruptLCD()
 {
+  while(STAT_REG & 3); // HBlank まで待つ
   HIDE_WIN;
+}
+
+// VBlank 時にウィンドウを表示する
+void interruptVBL() {
+  SHOW_WIN;
 }
 
 void main()
 {
-  // STAT_REG = 0x40;
-  // LYC_REG = 8;
+  // STAT_REG = 0x40; // LYC を有効にする
+  // LYC_REG = 0x07;  // 8 番目の直前の行
+
+  disable_interrupts();
   
   set_sprite_data(0, 11, Sprites);
   set_bkg_data(0, 2, Backgrounds);
@@ -44,13 +53,14 @@ void main()
   SHOW_BKG;
   SHOW_SPRITES;
 
+  // ハンドラと、割り込みの設定
   // add_LCD(interruptLCD);
-  // set_interrupts(VBL_IFLAG | LCD_IFLAG);
-  // enable_interrupts();
+  add_VBL(interruptVBL);
+  set_interrupts(VBL_IFLAG | LCD_IFLAG);
+  enable_interrupts();
 
   while (1)
   {
-    SHOW_WIN;
     wait_vbl_done();
   }
 }
